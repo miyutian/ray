@@ -1,0 +1,9 @@
+		<?xml version="1.0" encoding="UTF-8"?>  
+		<config>  
+		    <sql name="ReportServiceImpl.SEARCH_TEMPLATE">  
+		        your sql here 1  
+		    </sql>  
+		    <sql name="ReportServiceImpl.SEARCH_TEMPLATE_UNION">  
+		        your sql here 2  
+		    </sql>  
+		</config>

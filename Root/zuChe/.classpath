@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre6"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/commons-compress-1.9.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/commons-lang-2.3.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/gt-api-8.6.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/gt-data-8.6.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/gt-main-8.6.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/gt-metadata-8.6.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/gt-opengis-8.6.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/gt-referencing-8.6.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/gt-shapefile-8.6.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/jackcess-2.1.5.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/jsr-275-1.0-beta-2.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/jts-1.12.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/jxl.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/mysql-connector-java-3.1.12-bin.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/poi-3.12-20150511.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/poi-excelant-3.12-20150511.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/poi-ooxml-3.12-20150511.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/poi-ooxml-schemas-3.12-20150511.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/poi-scratchpad-3.12-20150511.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/sevenzipjbinding.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/sevenzipjbinding-AllPlatforms.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files (x86)/apache-tomcat-6.0.45/webapps/ROOT/zuChe/lib/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

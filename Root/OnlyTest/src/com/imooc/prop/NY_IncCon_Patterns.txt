@@ -1,0 +1,25 @@
+DIR_PATTERN~TrafficCastSeparateSign~((?:(?!\bAT\b).)*)(\bAT\b)(.*)
+DIR_PATTERN~TrafficCastSeparateSign~((?:(?!\bFROM\b).)*)(\bFROM\b)(.*)
+DIR_PATTERN~TrafficCastSeparateSign~((?:(?!\bBETWEEN\b).)*)(\bBETWEEN\b)(.*)
+DIR_PATTERN~TrafficCastSeparateSign~(.*)\sAREA OF\s(.*)
+DIR_PATTERN~TrafficCastSeparateSign~(.*)\sEXIT\s(.*)
+
+FROM_TO_PATTERN~TrafficCastSeparateSign~(I-\d+) \((.* CREEK) AND \((NEAR .*)\) 
+FROM_TO_PATTERN~TrafficCastSeparateSign~(RT\. \d+) (.* RD) TO (.* RD)
+FROM_TO_PATTERN~TrafficCastSeparateSign~(.* AVE)\. FROM (.* ST)\. TO (.* ST)\.
+FROM_TO_PATTERN~TrafficCastSeparateSign~(.*) BETWEEN (EXITS? \d+) .* AND (EXITS? \d+) .*
+FROM_TO_PATTERN~TrafficCastSeparateSign~(.*) BETWEEN (EXITS \d+) - (\d+)
+FROM_TO_PATTERN~TrafficCastSeparateSign~.*ON (.*) FROM (.*?) TO (.*?)[\.,].*
+FROM_TO_PATTERN~TrafficCastSeparateSign~(.*) FROM (.*) THRU (.*)
+FROM_TO_PATTERN~TrafficCastSeparateSign~.*ON (.*) BOTH DIRECTIONS BETWEEN (.*?) AND (.*?)[\.,].*
+FROM_TO_PATTERN~TrafficCastSeparateSign~(.*)BET?WEEN((?:(?!\bAND\b).)*)\bAND\b((?:(?!\,\s).)*)
+FROM_TO_PATTERN~TrafficCastSeparateSign~(.*)BETWEEN(.*) & (.*)
+FROM_TO_PATTERN~TrafficCastSeparateSign~(.*)BETWEEN((?:(?!TO).)*) TO (.*) UNTIL
+FROM_TO_PATTERN~TrafficCastSeparateSign~(.*)BETWEEN((?:(?!TO).)*) TO (.*),
+FROM_TO_PATTERN~TrafficCastSeparateSign~(.*)BTWN (.*) TO (NE FRONT ST) AND
+FROM_TO_PATTERN~TrafficCastSeparateSign~(.*)BTWN(.*) AND (.*)
+FROM_TO_PATTERN~TrafficCastSeparateSign~(.*)BTW(.*) AND (.*)
+FROM_TO_PATTERN~TrafficCastSeparateSign~.* ON (.*)BETWEEN(.*) AND (.*)
+FROM_TO_PATTERN~TrafficCastSeparateSign~(.*) BETWEEN (.*) TO (.*) \(
+FROM_TO_PATTERN~TrafficCastSeparateSign~.*\) (.*) BETWEEN(.*) (?:AND|TO) (.*)
+FROM_TO_PATTERN~TrafficCastSeparateSign~(.*)BETWEEN(.*?) (?:AND|TO) (.*?)

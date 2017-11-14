@@ -1,0 +1,48 @@
+1. Raw_NTLinks_USA
+	count: 47259674, distinct count: 47252883
+	//include GUAM count: 47279727, distinct count: 47272936
+	//GUAM record count: 20053
+
+2. Raw_NTAlias_USA
+	count: 14851977
+	//include GUAM count: 14858991
+	
+3. Raw_NTTmc_USA
+	count: 9715787
+	//include GUAM count: 9715787
+	
+4. Raw_NTZone_USA
+	count: 38136954
+	//include GUAM count: 38150282
+
+5. Raw_NTLinks_CAN
+	count: 3340188, distinct count: 3340127
+	
+6. Raw_NTAlias_CAN
+	count: 726252
+
+7. Raw_NTTmc_CAN
+	count: 671087
+
+8. Raw_NTZone_CAN
+	count: 2641907
+
+
+
+
+----------------------------------------
+Raw_NTLinks_USA dup link_id:
+CAN	241240000023004
+CAN	241240000059851
+CAN	241240000068215
+CAN	241240000070770
+CAN	241240000084465
+CAN	241240000091155
+CAN	241240000092363
+CAN	241240000092364
+CAN	241240000093150
+CAN	241240000097537
+
+241240000023004 both in qc27z001_nw_CAN and qc37z001_nw_CAN
+
+

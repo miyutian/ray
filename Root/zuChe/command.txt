@@ -1,0 +1,8 @@
+Check files:
+java -Xmx2096m -cp .:bin:lib/* com.tci.shp.CheckFiles /ebsr0/Transfer/TomTom_Map/North_America_2016_06//USA > USA.txt
+java -Xmx2096m -cp .:bin:lib/* com.tci.shp.CheckFiles /ebsr0/Transfer/TomTom_Map/North_America_2016_06//CAN > CAN.txt
+java -Xmx2096m -cp .:bin:lib/* com.tci.shp.CheckFiles /ebsr0/Transfer/TomTom_Map/North_America_2016_06//MEX > MEX.txt
+
+Unzip Shp files:
+nohup java -Xmx4096m -cp .:bin:lib/* com.tci.shp.UnzipShp /ebsr0/Transfer/TomTom_Map/North_America_2016_06/USA /ebsr0/data/jackie/output/USA &
+

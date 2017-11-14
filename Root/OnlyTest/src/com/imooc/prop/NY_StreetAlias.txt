@@ -1,0 +1,137 @@
+# This is header Key~TrafficCastSeparateSign~Value
+DR. DAVIES~TrafficCastSeparateSign~DRDAVIES
+^AT (.*)~TrafficCastSeparateSign~$1
+\[.*\]~TrafficCastSeparateSign~ 
+END ROUTE;(.*)~TrafficCastSeparateSign~$1
+BELT SYSTEM -~TrafficCastSeparateSign~ 
+;.*~TrafficCastSeparateSign~ 
+START ROUTE~TrafficCastSeparateSign~ 
+END ROUTE~TrafficCastSeparateSign~ 
+.*EXIT.*?\s-~TrafficCastSeparateSign~ 
+.*EXIT.*?-\s~TrafficCastSeparateSign~ 
+INTERCHANGE\s\d+[A-Z]?\s-\s~TrafficCastSeparateSign~ 
+I - (\d+)~TrafficCastSeparateSign~I-$1
+I-(\d+)\s.*~TrafficCastSeparateSign~I-$1
+.*\sOF\s~TrafficCastSeparateSign~ 
+.*RAMP TO~TrafficCastSeparateSign~ 
+.*:~TrafficCastSeparateSign~ 
+\bFROM\b.*~TrafficCastSeparateSign~ 
+\bTHE\b~TrafficCastSeparateSign~ 
+\s-\s.*~TrafficCastSeparateSign~ 
+/.*~TrafficCastSeparateSign~ 
+\(.*~TrafficCastSeparateSign~ 
+,.*~TrafficCastSeparateSign~ 
+\bBUS\b~TrafficCastSeparateSign~ 
+\bRTE\b\s+(\d+)~TrafficCastSeparateSign~RT-$1
+\s&\s.*~TrafficCastSeparateSign~ 
+#\bAND\b.*~TrafficCastSeparateSign~ 
+&.*~TrafficCastSeparateSign~ 
+\bEND\b~TrafficCastSeparateSign~ 
+\bOVERLAP\b~TrafficCastSeparateSign~ 
+(EAST|SOUTH|WEST|NORTH)BOUND~TrafficCastSeparateSign~ 
+(.*)\s(EAST|SOUTH|WEST|NORTH)$~TrafficCastSeparateSign~$1 
+
+#Street type to TC standard type
+(\s+\bSTREET\b.*)~TrafficCastSeparateSign~ ST
+(\bSTREET\b)~TrafficCastSeparateSign~ST
+(\bLINES?\b.*)~TrafficCastSeparateSign~LN
+(\bAVENUES\b.*)~TrafficCastSeparateSign~AVE
+#(\bAVENUE\b.*)~TrafficCastSeparateSign~AVE
+(\bAVENUE\b$)~TrafficCastSeparateSign~AVE
+(\bAVEENUE\b.*)~TrafficCastSeparateSign~AVE
+(\bAV\b.*)~TrafficCastSeparateSign~AVE
+(\bAVE\b.*)~TrafficCastSeparateSign~AVE
+(\bROAD\b.*)~TrafficCastSeparateSign~RD
+(\bBOULEVARD\b.*)~TrafficCastSeparateSign~BLVD
+(\bDRIVE\b.*)~TrafficCastSeparateSign~DR
+(\bPARKWAY$\b)~TrafficCastSeparateSign~PKWY
+#(\bPKWY\b.*)~TrafficCastSeparateSign~PKY
+(\bEXPRESSWAY\b.*)~TrafficCastSeparateSign~EXPY
+(\bEXPRESS\b.*)~TrafficCastSeparateSign~EXPY
+(\bTUNNEL\b.*)~TrafficCastSeparateSign~TUNL
+(\bBRIDGES\b.*)~TrafficCastSeparateSign~BRG
+(\bBRIDGE\b.*)~TrafficCastSeparateSign~BRG
+(\bHIGHWAY\b.*)~TrafficCastSeparateSign~HWY
+(\bCIRCLE\b.*)~TrafficCastSeparateSign~CIR
+(\bPLACE\b.*)~TrafficCastSeparateSign~PL
+(\bVIADUCT\b.*)~TrafficCastSeparateSign~VIAD
+(\bLANE\b.*)~TrafficCastSeparateSign~LN
+(\bCREEK\b.*)~TrafficCastSeparateSign~CRK
+(\bTURNPIKE\b.*)~TrafficCastSeparateSign~TPKE
+(\bTERRACE\b$)~TrafficCastSeparateSign~TER
+(\bRV\b$)~TrafficCastSeparateSign~RIV
+(\bINTERCHANGE\b)~TrafficCastSeparateSign~ 
+(\bLOCAL\b\s*LANES)~TrafficCastSeparateSign~ 
+\bCAUSEWAY\b.*~TrafficCastSeparateSign~CSWY
+\bSKYWAY\b.*~TrafficCastSeparateSign~SKWY
+\bTRAIL\b.*~TrafficCastSeparateSign~TRL
+#\bST\b.*~TrafficCastSeparateSign~ST
+\bRD\b.*~TrafficCastSeparateSign~RD
+\bBLVD\b.*~TrafficCastSeparateSign~BLVD
+\bDR\b.*~TrafficCastSeparateSign~DR
+
+^US\s+(\d+)~TrafficCastSeparateSign~US-$1
+.*\bNY\s+(\d+[A-Z]?)~TrafficCastSeparateSign~NY-$1
+^NY(\d+).*~TrafficCastSeparateSign~NY-$1
+^I\s*(\d+)~TrafficCastSeparateSign~I-$1
+^NJ\s+(\d+)~TrafficCastSeparateSign~NJ-$1
+^CT\s+(\d+)~TrafficCastSeparateSign~CT-$1
+^(I-\d+).*~TrafficCastSeparateSign~$1
+^CR\s+~TrafficCastSeparateSign~CR-
+^EAST\s~TrafficCastSeparateSign~E 
+^WEST\s~TrafficCastSeparateSign~W 
+^NORTH\s~TrafficCastSeparateSign~N 
+^SOUTH\s~TrafficCastSeparateSign~S 
+^E AVE~TrafficCastSeparateSign~EAST AVE
+^BRG$~TrafficCastSeparateSign~BRIDGE
+.*EXITS\s(\d+).*~TrafficCastSeparateSign~EXIT $1
+.*\s(EXIT \d+)~TrafficCastSeparateSign~$1
+^([A-Z])$~TrafficCastSeparateSign~$1 LN
+\.~TrafficCastSeparateSign~ 
+COLLEGE POINT.*~TrafficCastSeparateSign~COLLEGE POINT BLVD
+STATE HWY\s(\d+)~TrafficCastSeparateSign~RT-$1
+\bTO\b.*~TrafficCastSeparateSign~ 
+\bAT\b~TrafficCastSeparateSign~ 
+\bIN\b~TrafficCastSeparateSign~ 
+RT(\d+)~TrafficCastSeparateSign~RT $1
+RT\s(\d+)~TrafficCastSeparateSign~RT-$1
+RT-195~TrafficCastSeparateSign~I-195
+\bSTREETS\b~TrafficCastSeparateSign~ST
+\bSTS\b~TrafficCastSeparateSign~ST
+COUNTY ROUTE\s(\d+)~TrafficCastSeparateSign~CR-$1
+\bCONNECTOR\b~TrafficCastSeparateSign~ 
+E AND WEST RD~TrafficCastSeparateSign~EAST AND WEST RD
+^CRK$~TrafficCastSeparateSign~CREEK RD
+(CR-\d+[A-Z]?).*~TrafficCastSeparateSign~$1
+JUNCTION~TrafficCastSeparateSign~ 
+.*BEYOND\s~TrafficCastSeparateSign~ 
+(US-\d+[A-Z]?).*~TrafficCastSeparateSign~$1
+@.*~TrafficCastSeparateSign~ 
+(NY-\d+[A-Z]?).*~TrafficCastSeparateSign~$1
+(SERVICE GATEWAY).*~TrafficCastSeparateSign~SERVICE GATEWAY 
+\s\s+~TrafficCastSeparateSign~ 
+NY-(\d+[A-Z]?).*~TrafficCastSeparateSign~RT-$1
+^\bROUTE\b\s+(\d+)\s*.*~TrafficCastSeparateSign~RT-$1
+^PINES$~TrafficCastSeparateSign~AVENUE OF THE PINES
+^S(\d+)S$~TrafficCastSeparateSign~CT-$1
+S15N~TrafficCastSeparateSign~RT-15
+CLEARVIEW EXPWY I-295~TrafficCastSeparateSign~CLEARVIEW EXPY
+NJ-139.*~TrafficCastSeparateSign~RT-139
+PALISADES INTERSTATE PARKWAY TOLL PLAZA~TrafficCastSeparateSign~FORT LEE
+INNER AND OUTER ROADWAY SPLIT~TrafficCastSeparateSign~BRUNSWICK TWP
+\bNJ-(\d+)\b~TrafficCastSeparateSign~RT-$1
+
+WASHINGTON SQUARE~TrafficCastSeparateSign~WASHINGTON SQ
+STATEN ISLAND SIDE~TrafficCastSeparateSign~STATEN ISLAND
+#1 00 AFTER WATER ST~TrafficCastSeparateSign~WATER ST
+\d+ \d+ AFTER (.*)~TrafficCastSeparateSign~$1
+
+(.*)\s(\bPARKWAY$\b)~TrafficCastSeparateSign~$1 PKWY
+(\bPARKWY$\b)~TrafficCastSeparateSign~PKWY
+VESET=Y ST~TrafficCastSeparateSign~VESTRY ST
+N BRK~TrafficCastSeparateSign~NORTH BRK
+AVENUE PORT IMPERIAL~TrafficCastSeparateSign~AVENUE AT PORT IMPERIAL
+^BB$~TrafficCastSeparateSign~BB&T PAVILION
+^I-$~TrafficCastSeparateSign~ 
+^US1$~TrafficCastSeparateSign~US-1
+DRDAVIES~TrafficCastSeparateSign~DR DAVIES
