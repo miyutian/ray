@@ -11,7 +11,7 @@ th {background: #336699; color: #FFFFFF; text-align: left;}
 </head>
 <body bgcolor="#FFFFFF" topmargin="6" leftmargin="6">
 <hr size="1" noshade>
-Log session start time Wed Nov 15 19:52:07 CST 2017<br>
+Log session start time Tue Sep 26 08:51:16 CST 2017<br>
 <br>
 <table cellspacing="0" cellpadding="4" border="1" bordercolor="#224466" width="100%">
 <tr>
@@ -24,10 +24,24 @@ Log session start time Wed Nov 15 19:52:07 CST 2017<br>
 </tr>
 
 <tr>
-<td>0</td>
+<td>16</td>
 <td title="main thread">main</td>
 <td title="Level">INFO</td>
 <td title="IN_dot_ArchiveSpeed category">IN_dot_ArchiveSpeed</td>
-<td>IN_dot_ArchiveSpeed.java:103</td>
+<td>SLC.java:114</td>
 <td title="Message">Started connecting to the DOT St. Louis  city for new RTspeed</td>
 </tr>
+
+<tr>
+<td>593</td>
+<td title="main thread">main</td>
+<td title="Level"><font color="#993300"><strong>FATAL</strong></font></td>
+<td title="IN_dot_ArchiveSpeed category">IN_dot_ArchiveSpeed</td>
+<td>SLC.java:188</td>
+<td title="Message">Unexpected exception : null....restarting to parse data in 60 seconds.</td>
+</tr>
+<tr><td bgcolor="#993300" style="color:White; font-size : xx-small;" colspan="6">java.lang.NullPointerException
+<br>&nbsp;&nbsp;&nbsp;&nbsp;	at SLC.parseXml(SLC.java:234)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;	at SLC.run(SLC.java:118)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;	at SLC.main(SLC.java:393)
+</td></tr>
