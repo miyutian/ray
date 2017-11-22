@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="D:/GITProject/Root/geotools-11.0/gt-opengis-11.0.jar"/>
 	<classpathentry kind="lib" path="D:/GITProject/Root/geotools-11.0/gt-shapefile-11.0.jar"/>
 	<classpathentry kind="lib" path="D:/GITProject/Root/geotools-11.0/jts-1.13.jar"/>
+	<classpathentry kind="lib" path="/TomTOMShp2Mysql/lib/mysql-connector-java-3.1.12-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

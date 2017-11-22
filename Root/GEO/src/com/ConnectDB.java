@@ -5,9 +5,6 @@ import java.sql.SQLException;
 import java.sql.Connection;
 
 public class ConnectDB {
-	public void ConnectDB(){
-		
-	}
 	public Connection dbConn = null;
 	/**
 	 * Get database connection.
@@ -17,10 +14,11 @@ public class ConnectDB {
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
-	public void connect() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+	public Connection connect() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-		dbConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?dontTrackOpenResources=true", 
+		dbConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/geo?useUnicode=true&characterEncoding=UTF-8", 
 				"root", "");
+		return dbConn;
 	} // end of connect
 	/**
 	 * Disconnect with db.

@@ -1,77 +1,137 @@
 package com;
 import java.io.File;  
+import java.io.FileWriter;
+
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.Collection;
-import java.util.Iterator;  
-  
+import java.util.Iterator; 
+
+import java.net.MalformedURLException;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+ 
+import com.mysql.jdbc.Driver;
 import org.geotools.data.FeatureSource;
 import org.geotools.data.shapefile.ShapefileDataStore;  
 import org.geotools.feature.FeatureCollection;
 import org.geotools.feature.FeatureIterator;
 
-import org.opengis.feature.Property;
+import java.nio.charset.Charset;
 import org.opengis.feature.simple.SimpleFeature;  
 import org.opengis.feature.simple.SimpleFeatureType;
-
+import java.io.StringWriter; 
 //import com.tci.shp.String;
-import com.vividsolutions.jts.geom.Point;
+
 
 
 
   
 public class testLine {  
-      
-	public static void main(String[] args) {  
-        ShapefileDataStore shpDataStore = null;  
-        try{  
-            shpDataStore = new ShapefileDataStore(new File("E:\\nw.shp").toURI().toURL());  
-            //shpDataStore.setStringCharset(Charset.forName("GBK"));  
+	private static final String String = null;
+	public static void main(String[] args) throws Exception {  
+		testLine std = new testLine();
+		std.nwtodb();
+		//std.gctodb();
+    }  
+	public void gctodb() throws  Exception{
+		 	//ShapefileDataStore shpDataStore = null;  
+	        int batchCount = 0;
+	        ShapefileDataStore shpDataStore = new ShapefileDataStore(new File("E:\\gc.shp").toURL());  
+	        shpDataStore.setCharset(Charset.forName("UTF-8"));  
             String typeName = shpDataStore.getTypeNames()[0]; 
             //System.out.println("typeName===>"+typeName);
             FeatureSource<SimpleFeatureType, SimpleFeature> featureSource = null;   
             featureSource = (FeatureSource<SimpleFeatureType, SimpleFeature>)shpDataStore.getFeatureSource(typeName);
-            
             //FeatureCollection<SimpleFeatureType, SimpleFeature> result = featureSource.getFeatures(); 
+            Connection dbConn = new ConnectDB().connect();
+            String insertSQL = "insert into gctable values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement pstm = dbConn.prepareStatement(insertSQL);
             //存储地理对象
             FeatureCollection<SimpleFeatureType, SimpleFeature> result = featureSource.getFeatures(); 
             //System.out.println(result.size());  
-            FeatureIterator<SimpleFeature> itertor = result.features();  
-            while(itertor.hasNext()){  
-                SimpleFeature feature = itertor.next();   
-                
-                Collection<Property> p = feature.getProperties(); 
-                Iterator<Property> it = p.iterator(); 
-                while(it.hasNext()) {  
-                    Property pro = it.next();  
-                    if (!(pro.getValue() instanceof Point)) {  
-                        //System.out.println(pro.getName() + " = " + pro.getValue()); 
-                    	//System.out.println(pro.getName() + " = " + pro.getAttribute("ID")); 
-                    }  
-                }
-                System.out.println(feature.getDefaultGeometryProperty().getValue());
-                System.out.println(feature.getAttribute("ID"));
-            }
-            itertor.close();  
-        } catch (MalformedURLException e) {  
-            e.printStackTrace();  
-        } catch(IOException e) { e.printStackTrace(); }  
-    }  
-<<<<<<< HEAD
-	public void shptodb() throws Exception{
+	        try{  
+	            FeatureIterator<SimpleFeature> itertor = result.features();  
+	            while(itertor.hasNext()){  
+	            	int paraCount = 1;
+	            	SimpleFeature feature = itertor.next();
+	            	if ((Integer) feature.getAttribute("FEATTYP") != 4110) {
+	    			    continue;
+	    			}			
+	    			System.out.println(feature.getAttribute("ID"));
+	    			pstm.setLong(paraCount++, (Long) feature.getAttribute("ID"));
+	    			pstm.setString(paraCount++, (String) feature.getAttribute("FULLNAME"));
+	    			pstm.setString(paraCount++, (String) feature.getAttribute("NAMELC"));
+	    			pstm.setInt(paraCount++, (Integer) feature.getAttribute("NAMETYP"));
+	    			pstm.setString(paraCount++, (String) feature.getAttribute("NAME"));
+	    			pstm.setString(paraCount++, (String) feature.getAttribute("NAMEPREFIX"));
+	    			pstm.setString(paraCount++, (String) feature.getAttribute("SUFTYPE"));
+	    			pstm.setString(paraCount++, (String) feature.getAttribute("SUFDIR"));
+	    			pstm.setString(paraCount++, (String) feature.getAttribute("PREDIR"));
+	    			pstm.setString(paraCount++, (String) feature.getAttribute("L_F_F_ADD"));	
+	    			pstm.setString(paraCount++, (String) feature.getAttribute("L_T_F_ADD"));	
+	    			pstm.setString(paraCount++, (String) feature.getAttribute("R_F_F_ADD"));	
+	    			pstm.setString(paraCount++, (String) feature.getAttribute("R_T_F_ADD"));
+	    			pstm.setString(paraCount++, (String) feature.getAttribute("L_AXON"));
+	    			pstm.setString(paraCount++, (String) feature.getAttribute("R_AXON"));
+	    			pstm.setString(paraCount++, (String) feature.getAttribute("L_APNAME"));
+	    			pstm.setString(paraCount++, (String) feature.getAttribute("R_APNAME"));
+	    			pstm.setString(paraCount++, (String) feature.getAttribute("L_LAXON"));
+	    			pstm.setString(paraCount++, (String) feature.getAttribute("R_LAXON"));
+	    			// store in txt file
+	    			//WriteTxt(feature.getAttribute("ID").toString(),feature.getAttribute("NAME").toString());
+	    			pstm.addBatch();
+	    			batchCount++;
+	    			if (batchCount == 4000) {
+	    			    pstm.executeBatch();
+	    			    pstm.clearBatch();
+	    			    batchCount = 0;
+	    			}
+	    		    }
+	    		    pstm.executeBatch();
+	    		} finally {		  
+	    		    pstm.close();
+	    		    dbConn.close();
+	            }
+	        }
+	private void WriteTxt(String strBufferID,String strBufferName){
+		try  
+		{      
+		  // 创建文件对象  
+		String strFilename = "E:\\name.txt";
+		  File fileText = new File(strFilename);  
+		  // 向文件写入对象写入信息  
+		  FileWriter fileWriter = new FileWriter(fileText, true);  
+
+		  // 写文件
+		  fileWriter.write(strBufferID);  
+		  fileWriter.write(":"); 
+		  fileWriter.write(strBufferName +"\r\n");  
+
+		  // 关闭  
+		  fileWriter.close();  
+		}  
+		catch (IOException e)  
+		{  
+		  //  
+		  e.printStackTrace();  
+		} 	
+	}	
+	public void nwtodb() throws Exception{
 		 ShapefileDataStore shpDataStore = null;  
 	        int batchCount = 0;
+
 	        try{  
 	            shpDataStore = new ShapefileDataStore(new File("E:\\nw.shp").toURI().toURL());  
-	            //shpDataStore.setStringCharset(Charset.forName("GBK"));  
+	            shpDataStore.setCharset(Charset.forName("UTF-8"));  
 	            String typeName = shpDataStore.getTypeNames()[0]; 
 	            //System.out.println("typeName===>"+typeName);
 	            FeatureSource<SimpleFeatureType, SimpleFeature> featureSource = null;   
 	            featureSource = (FeatureSource<SimpleFeatureType, SimpleFeature>)shpDataStore.getFeatureSource(typeName);
 	            //FeatureCollection<SimpleFeatureType, SimpleFeature> result = featureSource.getFeatures(); 
+	            Connection dbConn = new ConnectDB().connect();
 	            
-	            String insertSQL = "insert into nwTable values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,GeomFromText(?),?,?,?,?)";
-	            dbConn = new ConnectDB().connect();
+	            String insertSQL = "insert into nwtable111 values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,GeomFromText(?),?,?,?,?)";
 	            PreparedStatement pstm = dbConn.prepareStatement(insertSQL);
 	            //存储地理对象
 	            FeatureCollection<SimpleFeatureType, SimpleFeature> result = featureSource.getFeatures(); 
@@ -118,7 +178,7 @@ public class testLine {
 	               		}
 	    		        
 	    			String link_dir = (String) feature.getAttribute("ONEWAY");
-	    			if (link_dir == null) {
+	    			if ((link_dir == null) || "".equals(link_dir)) {
 	    			    link_dir = "B";
 	    			} else if (link_dir.equals("N")) {
 	    			    link_dir = "B";//continue;
@@ -183,7 +243,6 @@ public class testLine {
 	               		}
 	               
 	                String geometry = feature.getDefaultGeometryProperty().getValue().toString();
-	                System.out.println(feature.getAttribute("ID"));
 	                pstm.setLong(paraCount++, (Long) feature.getAttribute("ID"));
 	                pstm.setLong(paraCount++, (Long) feature.getAttribute("F_JNCTID"));
 	                pstm.setLong(paraCount++, (Long) feature.getAttribute("T_JNCTID"));
@@ -212,6 +271,10 @@ public class testLine {
 	    			geometry = geometry.substring(0, geometry.length() - 1);
 	    			pstm.setString(paraCount++, geometry.toString());
 	    			pstm.setString(paraCount++, (String)feature.getAttribute("NAME"));
+	    			System.out.println(feature.getAttribute("ID"));
+	    			System.out.println(feature.getAttribute("NAME"));
+	    			// store in txt file
+	    			//WriteTxt(feature.getAttribute("ID").toString(),feature.getAttribute("NAME").toString());
 	    			pstm.setString(paraCount++, (String)feature.getAttribute("NAMELC"));
 	    			pstm.setInt(paraCount++, (Integer)feature.getAttribute("NAMETYP"));
 	    			pstm.setString(paraCount++, (String)feature.getAttribute("RTEDIR"));
@@ -230,7 +293,5 @@ public class testLine {
 	            e.printStackTrace();  
 	        } catch(IOException e) { e.printStackTrace(); }  
 	}
-=======
->>>>>>> parent of 6882104... add 3rd part JAR and update java code
      
 }  
