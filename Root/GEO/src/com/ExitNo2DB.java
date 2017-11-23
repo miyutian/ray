@@ -4,7 +4,7 @@ import java.io.InputStream;
 import com.linuxense.javadbf.DBFField;  
 import com.linuxense.javadbf.DBFReader; 
 
-public class test {  
+public class ExitNo2DB {  
 	public static void readDBF() {  
 	    InputStream fis = null;  
 	    try {  
@@ -41,7 +41,7 @@ public class test {
 	        
 		public static void main(String[] args) {  
 	      System.out.println("12321321321");
-	      test exit = new test();
+	      ExitNo2DB exit = new ExitNo2DB();
 	 	  exit.readDBF();
 	    }  
 }
