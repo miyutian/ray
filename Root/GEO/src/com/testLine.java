@@ -10,7 +10,6 @@ import java.net.MalformedURLException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
- 
 import com.mysql.jdbc.Driver;
 import org.geotools.data.FeatureSource;
 import org.geotools.data.shapefile.ShapefileDataStore;  
@@ -131,7 +130,7 @@ public class testLine {
 	            //FeatureCollection<SimpleFeatureType, SimpleFeature> result = featureSource.getFeatures(); 
 	            Connection dbConn = new ConnectDB().connect();
 	            
-	            String insertSQL = "insert into nwtable111 values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,GeomFromText(?),?,?,?,?)";
+	            String insertSQL = "insert into nwtable values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,GeomFromText(?),?,?,?,?)";
 	            PreparedStatement pstm = dbConn.prepareStatement(insertSQL);
 	            //存储地理对象
 	            FeatureCollection<SimpleFeatureType, SimpleFeature> result = featureSource.getFeatures(); 
@@ -252,6 +251,7 @@ public class testLine {
 	                pstm.setInt(paraCount++, lanes);
 	                pstm.setInt(paraCount++, lane_cat);
 	                pstm.setString(paraCount++, link_dir);
+	                pstm.setInt(paraCount++, (Integer)feature.getAttribute("KPH"));
 	                pstm.setString(paraCount++, fontage);
 	                pstm.setString(paraCount++, bridge);
 	                pstm.setString(paraCount++, tunnel);
