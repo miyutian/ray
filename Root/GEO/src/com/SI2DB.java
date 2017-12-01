@@ -8,7 +8,7 @@ import com.mysql.jdbc.Driver;
 import org.geotools.data.shapefile.dbf.DbaseFileReader;
 import org.geotools.data.shapefile.dbf.DbaseFileReader.Row;
 
-public class test {  
+public class SI2DB {  
 	
 	public static void sitodb() throws Exception{  
 		Connection dbConn = new ConnectDB().connect();
@@ -91,7 +91,7 @@ public class test {
 	}  
 	 
 		public static void main(String[] args) throws Exception {  
-	      test exit = new test();
+	      SI2DB exit = new SI2DB();
 	 	  //exit.sitodb();
 	 	  exit.sptodb();
 	    }  

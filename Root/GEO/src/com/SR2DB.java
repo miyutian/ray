@@ -40,8 +40,8 @@ public class SR2DB {
 	                pstm.setInt(3, (Integer) row.read(2));
 	                pstm.setString(4, (String) row.read(3));
 	                pstm.setInt(5, (Integer) row.read(4));
-	    			pstm.setInt(6, (Integer) row.read(5));
-	    			pstm.setInt(6, (Integer) row.read(6));
+	    			pstm.setString(6, (row.read(5).toString()));
+	    			pstm.setInt(7, (Integer) row.read(6));
 	    			pstm.addBatch();
 	    			batchCount++;
 	    			if (batchCount == 4000) {

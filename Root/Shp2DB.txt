@@ -1,0 +1,26 @@
+1.DBConnector  建立数据库的链接，方便后续其它程序的调用
+2.LoadFrontageRDFromExcel  在excel表格中获取到frontage道路的名称并保存到test数据库  未找到相关excel表格
+3.LocationMDB2Excel  将MDB中表TANA_LT_V45_201606中1-36个TMC表单信息分别单独存储到对应excel表格中
+4.LocationMDB2Mysql  将MDB中表TANA_LT_V45_201606中1-36个TMC表单信息分别单独存储到对应数据库的表格中
+5.County  定义country,state,county,boundary
+6.CheckFiles  检查相关文件nw，gc，a8，mn，mp，rd是否存在
+7.ExitNum2Mysql结合SI和SP将link_ID 和出口信息存入数据库的Raw_ExitNum_表
+8.KPH2Mysql将NW表中的LINK_ID和KPH列单独提取并保存在Raw_KPH_表
+9.Maneuver2Mysql结合MN和MP将所有交规信息（未筛选？）存入数据库的Raw_Maneuver_表
+10.OrigFOW2Mysql 将NW表中的LINK_ID和FOW列单独提取并保存在Raw_OrigFOW_表
+11.OrigFRC2Mysql 将NW表中的LINK_ID和FRC列单独提取并保存在Raw_OrigFOW_表
+12.RouteNum2Mysql 提取RN中的相关列信息并进行format，存入Raw_RouteNum_表
+13.SR2Mysql 提取SR中的速度及其它相关列信息存入Raw_SR_表
+14.Street2Mysql 从A8表中提取国家名称及编码，NW和GC表中提取相关列并存入Raw_TTLinks_表，将NW和GC别名数据存入Raw_TTAlias_表，将GC的L_AXON等信息存入Raw_TTZone_表，将rd的信息存入Raw_TTTmc_表
+15.TomTom2Mysql 程序入口
+16.UnzipShp 解压初始数据包
+
+
+
+问题：
+KPH、交规、RN表格的作用？
+mdb和excel没有？
+交规信息和之前所说的不同
+路名及别名表的不同
+
+

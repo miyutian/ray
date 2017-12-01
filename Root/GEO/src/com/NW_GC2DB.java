@@ -26,10 +26,10 @@ import java.io.StringWriter;
 
 
   
-public class testLine {  
+public class NW_GC2DB {  
 	private static final String String = null;
 	public static void main(String[] args) throws Exception {  
-		testLine std = new testLine();
+		NW_GC2DB std = new NW_GC2DB();
 		std.nwtodb();
 		//std.gctodb();
     }  
@@ -130,7 +130,7 @@ public class testLine {
 	            //FeatureCollection<SimpleFeatureType, SimpleFeature> result = featureSource.getFeatures(); 
 	            Connection dbConn = new ConnectDB().connect();
 	            
-	            String insertSQL = "insert into nwtable values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,GeomFromText(?),?,?,?,?)";
+	            String insertSQL = "insert into nwtable values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,GeomFromText(?),?,?,?,?)";
 	            PreparedStatement pstm = dbConn.prepareStatement(insertSQL);
 	            //存储地理对象
 	            FeatureCollection<SimpleFeatureType, SimpleFeature> result = featureSource.getFeatures(); 
@@ -251,6 +251,7 @@ public class testLine {
 	                pstm.setInt(paraCount++, lanes);
 	                pstm.setInt(paraCount++, lane_cat);
 	                pstm.setString(paraCount++, link_dir);
+	                pstm.setInt(paraCount++, (Integer)feature.getAttribute("FRC"));
 	                pstm.setInt(paraCount++, (Integer)feature.getAttribute("KPH"));
 	                pstm.setString(paraCount++, fontage);
 	                pstm.setString(paraCount++, bridge);
