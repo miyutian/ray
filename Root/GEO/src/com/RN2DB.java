@@ -4,6 +4,8 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
+
 import com.mysql.jdbc.Driver;
 import org.geotools.data.shapefile.dbf.DbaseFileReader;
 import org.geotools.data.shapefile.dbf.DbaseFileReader.Row;
@@ -15,14 +17,16 @@ public class RN2DB {
 	 * @param args
 	 */
 	public static void main(String[] args) throws Exception{
-		RN2DB routenum = new RN2DB();
-		routenum.rn2db();
+		//RN2DB routenum = new RN2DB();
+		//routenum.rn2db();
 	}
 	private void RN2DB(){
 	
 	}
-	public void rn2db()throws Exception{
-		String File = "E:\\rn.dbf";
+	public void rn2db(ArrayList<String> rnList)throws Exception{
+		for(int k = 0; k < rnList.size();k++){
+			if(rnList.get(k).indexOf("___________rn.dbf")!=-1){
+		String File = rnList.get(k);
 		Connection dbcon = new ConnectDB().connect();
 		String insertSQL = "insert into rntable values(?,?,?,?,?,?)";
 		PreparedStatement pstm = dbcon.prepareStatement(insertSQL);
@@ -43,7 +47,7 @@ public class RN2DB {
 			String fname_suff = StrFormat.convertNullStringToEnptyAndUppercase((String) row.read(16)).trim();
 			
 			if (!routeNum.equals("")) {
-				System.out.println("!routeNum.equals('')");
+				//System.out.println("!routeNum.equals('')");
 			    String fname_base = routeNum;
 			    String fname_type = "";
 			    if (!fname_pref.equals("") && fname_base.startsWith(fname_pref + " ")) {
@@ -111,5 +115,7 @@ public class RN2DB {
 		pstm.close();
 		reader.close();
 	    }
+		}
+	}
 
 }
