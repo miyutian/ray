@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.osgeo.proj4j.CRSFactory"/>
+<fullyQualifiedTypeName name="org.osgeo.proj4j.CoordinateReferenceSystem"/>
+<fullyQualifiedTypeName name="org.osgeo.proj4j.CoordinateTransform"/>
+<fullyQualifiedTypeName name="org.osgeo.proj4j.ProjCoordinate"/>
+<fullyQualifiedTypeName name="org.osgeo.proj4j.BasicCoordinateTransform"/>
+<fullyQualifiedTypeName name="org.apache.http.ParseException"/>
+</qualifiedTypeNameHistroy>

@@ -18,7 +18,7 @@ public class RD2DB {
 	
 	}
 	public static void main(String args[]) throws Exception{
-
+		
 	}
 	public void tttmc(ArrayList<String> rdList) throws Exception{
 		for(int i = 0; i < rdList.size();i++){
