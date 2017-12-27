@@ -28,7 +28,7 @@ public class GetEPSGCode {
         
         String contents = EntityUtils.toString(entity);
         contents = contents.substring(contents.indexOf("<li>")-2, contents.lastIndexOf("</li>")+5);
-       // System.out.println(contents);
+        System.out.println(contents);
         new WriteTxt().WriteTxt(contents);
         }
     }

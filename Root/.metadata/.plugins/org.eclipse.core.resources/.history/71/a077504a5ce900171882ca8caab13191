@@ -1,0 +1,225 @@
+package com;
+
+
+import java.io.IOException;
+
+import org.apache.http.ParseException;
+import org.osgeo.proj4j.BasicCoordinateTransform;
+import org.osgeo.proj4j.CRSFactory;
+import org.osgeo.proj4j.CoordinateReferenceSystem;
+import org.osgeo.proj4j.CoordinateTransform;
+import org.osgeo.proj4j.ProjCoordinate;
+
+/**
+ * 使用Jsoup解析url
+ * @tag：url ：http://sex.guokr.com/
+ * Created by monster on 2015/12/11.
+ */
+public class CodeTest {
+    public static void main(String[] args) throws ParseException, IOException{
+    	String[] coor= new CodeTest().transform(756835.31,985114.69);
+    	
+    	
+    }
+    	/**
+    	 * @param y
+    	 * @param x
+    	 * @return
+    	 */
+    	/**
+    	 * @param y
+    	 * @param x
+    	 * @return
+    	 */
+    	private String[] transform(double y, double x) {
+    		 /* for more details please refer to: 
+    		    1) https://github.com/OSGeo/proj.4/wiki/GenParms#units 
+
+    		    2) https://gis.stackexchange.com/questions/206050/convert-from-epsg27700-to-latitude-and-longitude 
+
+    		    3) https://gis.stackexchange.com/questions/199087/projection-from-epsg4326-to-epsg4258 
+
+    		    4) https://trac.osgeo.org/proj4j 
+
+    		 */
+    		String[] EPSGIDList = new String[]{
+    				//"EPSG:4930",
+    				/*"EPSG:4886",
+    				"EPSG:7796",
+    				"EPSG:4473",
+    				"EPSG:6309",
+    				"EPSG:4479",
+    				"EPSG:4932",
+    				"EPSG:6133",
+    				"EPSG:5363",
+    				"EPSG:5828",
+    				"EPSG:4897",
+    				"EPSG:5262",
+    				"EPSG:4934",
+    				"EPSG:7930",
+    				"EPSG:7914",
+    				"EPSG:7916",
+    				"EPSG:7918",
+    				"EPSG:7920",
+    				"EPSG:7922",
+    				"EPSG:7924",
+    				"EPSG:7926",
+    				"EPSG:7928",
+    				"EPSG:4936",
+    				"EPSG:5591",
+    				"EPSG:7842",
+    				"EPSG:4938",
+    				"EPSG:5244",
+    				"EPSG:4920",
+    				"EPSG:4908",
+    				"EPSG:7681",
+    				"EPSG:4940",
+    				"EPSG:4888",
+    				"EPSG:6981",
+    				"EPSG:6988",
+    				"EPSG:7134",
+    				"EPSG:7137",
+    				"EPSG:4982",
+    				"EPSG:3887",
+    				"EPSG:6934",
+    				"EPSG:8227",
+    				"EPSG:4942",
+    				"EPSG:5322",
+    				"EPSG:8084",
+    				"EPSG:4944",
+    				"EPSG:4919",
+    				"EPSG:4896",
+    				"EPSG:5332",
+    				"EPSG:7789",
+    				"EPSG:4910",
+    				"EPSG:4911",
+    				"EPSG:4912",
+    				"EPSG:4913",
+    				"EPSG:4914",
+    				"EPSG:4915",
+    				"EPSG:4916",
+    				"EPSG:4917",
+    				"EPSG:4918",
+    				"EPSG:4894",
+    				"EPSG:4946",
+    				"EPSG:6666",
+    				"EPSG:4926",
+    				"EPSG:7684",
+    				"EPSG:4990",
+    				"EPSG:4992",
+    				"EPSG:4899",
+    				"EPSG:4948",
+    				"EPSG:4950",
+    				"EPSG:5368",
+    				"EPSG:4996",
+    				"EPSG:5352",
+    				"EPSG:4924",
+    				"EPSG:6363",
+    				"EPSG:4481",
+    				"EPSG:4000",
+    				"EPSG:4952",
+    				"EPSG:6317",
+    				"EPSG:6781",
+    				"EPSG:4954",
+    				"EPSG:8233",
+    				"EPSG:8238",
+    				"EPSG:8242",
+    				"EPSG:8247",
+    				"EPSG:8250",
+    				"EPSG:8253",
+    				"EPSG:8230",
+    				"EPSG:4956",
+    				"EPSG:6323",
+    				"EPSG:4892",
+    				"EPSG:6320",
+    				"EPSG:4958",
+    				"EPSG:7371",
+    				"EPSG:5369",
+    				"EPSG:5544",
+    				"EPSG:5341",
+    				"EPSG:4928",
+    				"EPSG:4960",
+    				"EPSG:4994",
+    				"EPSG:5011",
+    				"EPSG:4922",
+    				"EPSG:7677",
+    				"EPSG:7679",
+    				"EPSG:6704",
+    				"EPSG:4079",
+    				"EPSG:4962",
+    				"EPSG:5487",
+    				"EPSG:4964",
+    				"EPSG:4966",
+    				"EPSG:4468",
+    				"EPSG:4906",
+    				"EPSG:4998",
+    				"EPSG:4970",
+    				"EPSG:4039",
+    				"EPSG:4465",
+    				"EPSG:7071",
+    				"EPSG:4556",
+    				"EPSG:4884",
+    				"EPSG:7884",
+    				"EPSG:4974",
+    				"EPSG:4988",
+    				"EPSG:5391",
+    				"EPSG:5358",
+    				"EPSG:5379",
+    				"EPSG:4882",
+    				"EPSG:4073",
+    				"EPSG:7879",
+    				"EPSG:4976",
+    				"EPSG:5884",
+    				"EPSG:5250",
+    				"EPSG:3822",
+    				"EPSG:5558",
+    				"EPSG:4890",
+    				"EPSG:4984",
+    				"EPSG:4986",
+    				"EPSG:4978",
+    				"EPSG:7660",
+    				"EPSG:7662",
+    				"EPSG:7664",
+    				"EPSG:7656",
+    				"EPSG:7658",
+    				"EPSG:7815",*/
+    				"EPSG:2000",
+    				"EPSG:4980"
+    				
+
+    		};
+    		try {
+    			for (int i = 0; i < 4200; i++){
+	    			CRSFactory crsFactory = new CRSFactory();
+	    			CoordinateReferenceSystem sourceSRS = crsFactory.createFromName(EPSGIDList[i]);
+	    			CoordinateReferenceSystem targetSRS = crsFactory.createFromName("EPSG:4326");
+	    			CoordinateTransform transformation = new BasicCoordinateTransform(sourceSRS, targetSRS);
+	    			ProjCoordinate result = new ProjCoordinate();
+	    			ProjCoordinate input = new ProjCoordinate(y, x);
+	    			transformation.transform(input, result);
+	    			ProjCoordinate yy = transformation.transform(input, result);
+	    			
+	    			//System.out.println("result       "+yy);
+	    			if (result == null){
+	    				continue;
+	    			}
+
+	                String[] coor = new String[2];
+	                coor[0] = result.y + "";
+	                coor[1] = result.x + "";
+	                if(Math.ceil(result.x/1) == -72.0){
+		                System.out.println(i+"===========>"+EPSGIDList[i]+"   "+"X::"+result.x+"   "+"Y::"+result.y);
+	                }else{
+	                	System.out.println(i+"===========>"+EPSGIDList[i]+"   "+"X::"+result.x);
+	                }
+	                new WriteTxt().WriteTxt(coor[0],coor[1]);
+    			}
+                
+    		} catch(Exception e) {
+    			//LOGGER.debug("Transform failed: " + e.getMessage());
+    		}			
+    		return null;
+    	
+
+    }
+}

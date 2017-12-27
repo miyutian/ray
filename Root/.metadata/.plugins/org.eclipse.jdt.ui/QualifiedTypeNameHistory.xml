@@ -6,4 +6,5 @@
 <fullyQualifiedTypeName name="org.osgeo.proj4j.ProjCoordinate"/>
 <fullyQualifiedTypeName name="org.osgeo.proj4j.BasicCoordinateTransform"/>
 <fullyQualifiedTypeName name="org.apache.http.ParseException"/>
+<fullyQualifiedTypeName name="java.lang.Math"/>
 </qualifiedTypeNameHistroy>
