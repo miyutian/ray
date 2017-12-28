@@ -7,4 +7,8 @@
 <fullyQualifiedTypeName name="org.osgeo.proj4j.BasicCoordinateTransform"/>
 <fullyQualifiedTypeName name="org.apache.http.ParseException"/>
 <fullyQualifiedTypeName name="java.lang.Math"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="com.test2"/>
+<fullyQualifiedTypeName name="com.GetCookie"/>
+<fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>
