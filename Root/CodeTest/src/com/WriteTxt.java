@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class WriteTxt {
-	public void WriteTxt(String strBufferID,String strBufferID2){
+	public void WriteTxt(String strBufferID,String strBufferID2,String strBufferID3){
 		try  
 		{      
 		  // 鍒涘缓鏂囦欢瀵硅薄  
@@ -17,7 +17,9 @@ public class WriteTxt {
 		  // 鍐欐枃浠�
 		  fileWriter.write(strBufferID); 
 		  fileWriter.write(","); 
-		  fileWriter.write(strBufferID2 +"\r\n"); 
+		  fileWriter.write(strBufferID2);
+		  fileWriter.write(","); 
+		  fileWriter.write(strBufferID3 +"\r\n");
 
 		  // 鍏抽棴  
 		  fileWriter.close();  

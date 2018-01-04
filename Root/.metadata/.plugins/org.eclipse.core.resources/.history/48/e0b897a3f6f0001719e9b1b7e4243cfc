@@ -1,0 +1,424 @@
+package com;
+
+
+import java.io.IOException;
+
+import org.apache.http.ParseException;
+import org.osgeo.proj4j.BasicCoordinateTransform;
+import org.osgeo.proj4j.CRSFactory;
+import org.osgeo.proj4j.CoordinateReferenceSystem;
+import org.osgeo.proj4j.CoordinateTransform;
+import org.osgeo.proj4j.ProjCoordinate;
+
+/**
+ * 使用Jsoup解析url
+ * @tag：url ：http://sex.guokr.com/
+ * Created by monster on 2015/12/11.
+ */
+public class CodeTest {
+    public static void main(String[] args) throws ParseException, IOException{
+    	String[] coor= new CodeTest().transform(756835.31,985114.69);
+    	
+    	
+    }
+    	/**
+    	 * @param y
+    	 * @param x
+    	 * @return
+    	 */
+    	/**
+    	 * @param y
+    	 * @param x
+    	 * @return
+    	 */
+    	private String[] transform(double y, double x) {
+    		 /* for more details please refer to: 
+    		    1) https://github.com/OSGeo/proj.4/wiki/GenParms#units 
+
+    		    2) https://gis.stackexchange.com/questions/206050/convert-from-epsg27700-to-latitude-and-longitude 
+
+    		    3) https://gis.stackexchange.com/questions/199087/projection-from-epsg4326-to-epsg4258 
+
+    		    4) https://trac.osgeo.org/proj4j 
+
+    		 */
+    		String[] EPSGIDList = new String[]{
+    				"EPSG:26076",
+    				"EPSG:26077",
+    				"EPSG:26078",
+    				"EPSG:26079",
+    				"EPSG:26080",
+    				"EPSG:26081",
+    				"EPSG:26082",
+    				"EPSG:26083",
+    				"EPSG:26084",
+    				"EPSG:26085",
+    				"EPSG:26086",
+    				"EPSG:26087",
+    				"EPSG:26088",
+    				"EPSG:26089",
+    				"EPSG:26090",
+    				"EPSG:26091",
+    				"EPSG:26092",
+    				"EPSG:26093",
+    				"EPSG:26094",
+    				"EPSG:26095",
+    				"EPSG:26096",
+    				"EPSG:26097",
+    				"EPSG:26098",
+    				"EPSG:26099",
+    				"EPSG:26100",
+    				"EPSG:26101",
+    				"EPSG:26102",
+    				"EPSG:26103",
+    				"EPSG:26104",
+    				"EPSG:26105",
+    				"EPSG:26106",
+    				"EPSG:26107",
+    				"EPSG:26108",
+    				"EPSG:26109",
+    				"EPSG:26110",
+    				"EPSG:26111",
+    				"EPSG:26112",
+    				"EPSG:26113",
+    				"EPSG:26114",
+    				"EPSG:26115",
+    				"EPSG:26116",
+    				"EPSG:26117",
+    				"EPSG:26118",
+    				"EPSG:26119",
+    				"EPSG:26120",
+    				"EPSG:26121",
+    				"EPSG:26122",
+    				"EPSG:26123",
+    				"EPSG:26124",
+    				"EPSG:26125",
+    				"EPSG:26126",
+    				"EPSG:26127",
+    				"EPSG:26128",
+    				"EPSG:26129",
+    				"EPSG:26130",
+    				"EPSG:26131",
+    				"EPSG:26132",
+    				"EPSG:26133",
+    				"EPSG:26134",
+    				"EPSG:26135",
+    				"EPSG:26136",
+    				"EPSG:26137",
+    				"EPSG:26138",
+    				"EPSG:26139",
+    				"EPSG:26140",
+    				"EPSG:26141",
+    				"EPSG:26142",
+    				"EPSG:26143",
+    				"EPSG:26144",
+    				"EPSG:26145",
+    				"EPSG:26146",
+    				"EPSG:26147",
+    				"EPSG:26148",
+    				"EPSG:26149",
+    				"EPSG:26150",
+    				"EPSG:26151",
+    				"EPSG:26152",
+    				"EPSG:26153",
+    				"EPSG:26154",
+    				"EPSG:26155",
+    				"EPSG:26156",
+    				"EPSG:26157",
+    				"EPSG:26158",
+    				"EPSG:26159",
+    				"EPSG:26160",
+    				"EPSG:26161",
+    				"EPSG:26162",
+    				"EPSG:26163",
+    				"EPSG:26164",
+    				"EPSG:26165",
+    				"EPSG:26166",
+    				"EPSG:26167",
+    				"EPSG:26168",
+    				"EPSG:26169",
+    				"EPSG:26170",
+    				"EPSG:26171",
+    				"EPSG:26172",
+    				"EPSG:26173",
+    				"EPSG:26174",
+    				"EPSG:26175",
+    				"EPSG:26176",
+    				"EPSG:26177",
+    				"EPSG:26178",
+    				"EPSG:26179",
+    				"EPSG:26180",
+    				"EPSG:26181",
+    				"EPSG:26182",
+    				"EPSG:26183",
+    				"EPSG:26184",
+    				"EPSG:26185",
+    				"EPSG:26186",
+    				"EPSG:26187",
+    				"EPSG:26188",
+    				"EPSG:26189",
+    				"EPSG:26190",
+    				"EPSG:26191",
+    				"EPSG:26192",
+    				"EPSG:26193",
+    				"EPSG:26194",
+    				"EPSG:26195",
+    				"EPSG:26196",
+    				"EPSG:26197",
+    				"EPSG:26198",
+    				"EPSG:26199",
+    				"EPSG:26200",
+    				"EPSG:26201",
+    				"EPSG:26202",
+    				"EPSG:26203",
+    				"EPSG:26204",
+    				"EPSG:26205",
+    				"EPSG:26206",
+    				"EPSG:26207",
+    				"EPSG:26208",
+    				"EPSG:26209",
+    				"EPSG:26210",
+    				"EPSG:26211",
+    				"EPSG:26212",
+    				"EPSG:26213",
+    				"EPSG:26214",
+    				"EPSG:26215",
+    				"EPSG:26216",
+    				"EPSG:26217",
+    				"EPSG:26218",
+    				"EPSG:26219",
+    				"EPSG:26220",
+    				"EPSG:26221",
+    				"EPSG:26222",
+    				"EPSG:26223",
+    				"EPSG:26224",
+    				"EPSG:26225",
+    				"EPSG:26226",
+    				"EPSG:26227",
+    				"EPSG:26228",
+    				"EPSG:26229",
+    				"EPSG:26230",
+    				"EPSG:26231",
+    				"EPSG:26232",
+    				"EPSG:26233",
+    				"EPSG:26234",
+    				"EPSG:26235",
+    				"EPSG:26236",
+    				"EPSG:26237",
+    				"EPSG:26238",
+    				"EPSG:26239",
+    				"EPSG:26240",
+    				"EPSG:26241",
+    				"EPSG:26242",
+    				"EPSG:26243",
+    				"EPSG:26244",
+    				"EPSG:26245",
+    				"EPSG:26246",
+    				"EPSG:26247",
+    				"EPSG:26248",
+    				"EPSG:26249",
+    				"EPSG:26250",
+    				"EPSG:26251",
+    				"EPSG:26252",
+    				"EPSG:26253",
+    				"EPSG:26254",
+    				"EPSG:26255",
+    				"EPSG:26256",
+    				"EPSG:26257",
+    				"EPSG:26258",
+    				"EPSG:26259",
+    				"EPSG:26260",
+    				"EPSG:26261",
+    				"EPSG:26262",
+    				"EPSG:26263",
+    				"EPSG:26264",
+    				"EPSG:26265",
+    				"EPSG:26266",
+    				"EPSG:26267",
+    				"EPSG:26268",
+    				"EPSG:26269",
+    				"EPSG:26270",
+    				"EPSG:26271",
+    				"EPSG:26272",
+    				"EPSG:26273",
+    				"EPSG:26274",
+    				"EPSG:26275",
+    				"EPSG:26276",
+    				"EPSG:26277",
+    				"EPSG:26278",
+    				"EPSG:26279",
+    				"EPSG:26280",
+    				"EPSG:26281",
+    				"EPSG:26282",
+    				"EPSG:26283",
+    				"EPSG:26284",
+    				"EPSG:26285",
+    				"EPSG:26286",
+    				"EPSG:26287",
+    				"EPSG:26288",
+    				"EPSG:26289",
+    				"EPSG:26290",
+    				"EPSG:26291",
+    				"EPSG:26292",
+    				"EPSG:26293",
+    				"EPSG:26294",
+    				"EPSG:26295",
+    				"EPSG:26296",
+    				"EPSG:26297",
+    				"EPSG:26298",
+    				"EPSG:26299",
+    				"EPSG:26300",
+    				"EPSG:26301",
+    				"EPSG:26302",
+    				"EPSG:26303",
+    				"EPSG:26304",
+    				"EPSG:26305",
+    				"EPSG:26306",
+    				"EPSG:26307",
+    				"EPSG:26308",
+    				"EPSG:26309",
+    				"EPSG:26310",
+    				"EPSG:26311",
+    				"EPSG:26312",
+    				"EPSG:26313",
+    				"EPSG:26314",
+    				"EPSG:26315",
+    				"EPSG:26316",
+    				"EPSG:26317",
+    				"EPSG:26318",
+    				"EPSG:26319",
+    				"EPSG:26320",
+    				"EPSG:26321",
+    				"EPSG:26322",
+    				"EPSG:26323",
+    				"EPSG:26324",
+    				"EPSG:26325",
+    				"EPSG:26326",
+    				"EPSG:26327",
+    				"EPSG:26328",
+    				"EPSG:26329",
+    				"EPSG:26330",
+    				"EPSG:26331",
+    				"EPSG:26332",
+    				"EPSG:26333",
+    				"EPSG:26334",
+    				"EPSG:26335",
+    				"EPSG:26336",
+    				"EPSG:26337",
+    				"EPSG:26338",
+    				"EPSG:26339",
+    				"EPSG:26340",
+    				"EPSG:26341",
+    				"EPSG:26342",
+    				"EPSG:26343",
+    				"EPSG:26344",
+    				"EPSG:26345",
+    				"EPSG:26346",
+    				"EPSG:26347",
+    				"EPSG:26348",
+    				"EPSG:26349",
+    				"EPSG:26350",
+    				"EPSG:26351",
+    				"EPSG:26352",
+    				"EPSG:26353",
+    				"EPSG:26354",
+    				"EPSG:26355",
+    				"EPSG:26356",
+    				"EPSG:26357",
+    				"EPSG:26358",
+    				"EPSG:26359",
+    				"EPSG:26360",
+    				"EPSG:26361",
+    				"EPSG:26362",
+    				"EPSG:26363",
+    				"EPSG:26364",
+    				"EPSG:26365",
+    				"EPSG:26366",
+    				"EPSG:26367",
+    				"EPSG:26368",
+    				"EPSG:26369",
+    				"EPSG:26370",
+    				"EPSG:26371",
+    				"EPSG:26372",
+    				"EPSG:26373",
+    				"EPSG:26374",
+    				"EPSG:26375",
+    				"EPSG:26376",
+    				"EPSG:26377",
+    				"EPSG:26378",
+    				"EPSG:26379",
+    				"EPSG:26380",
+    				"EPSG:26381",
+    				"EPSG:26382",
+    				"EPSG:26383",
+    				"EPSG:26384",
+    				"EPSG:26385",
+    				"EPSG:26386",
+    				"EPSG:26387",
+    				"EPSG:26388",
+    				"EPSG:26389",
+    				"EPSG:26390",
+    				"EPSG:26391",
+    				"EPSG:26392",
+    				"EPSG:26393",
+    				"EPSG:26394",
+    				"EPSG:26395",
+    				"EPSG:26396",
+    				"EPSG:26397",
+    				"EPSG:26398",
+    				"EPSG:26399",
+    				"EPSG:26400",
+    				"EPSG:26401",
+    				"EPSG:26402",
+    				"EPSG:26403",
+    				"EPSG:26404",
+    				"EPSG:26405",
+    				"EPSG:26406",
+    				"EPSG:26407",
+    				"EPSG:26408",
+    				"EPSG:26409",
+    				"EPSG:26410"
+
+
+
+    		};
+    		
+    			for (int i = 0; i < 4200; i++){
+    				try {
+	    			CRSFactory crsFactory = new CRSFactory();
+	    			CoordinateReferenceSystem sourceSRS = crsFactory.createFromName(EPSGIDList[i]);
+	    			
+	    			CoordinateReferenceSystem targetSRS = crsFactory.createFromName("EPSG:4326");
+	    			CoordinateTransform transformation = new BasicCoordinateTransform(sourceSRS, targetSRS);
+
+	    			ProjCoordinate result = new ProjCoordinate();
+	    			ProjCoordinate input = new ProjCoordinate(y, x);
+	    			transformation.transform(input, result);	    			
+	    			ProjCoordinate yy = transformation.transform(input, result);	    			
+	    			//if (result == null){
+	    				//continue;
+	    			//}
+
+	                String[] coor = new String[2];
+	                coor[0] = result.y + "";
+	                coor[1] = result.x + "";
+	                if(Math.ceil(result.x/1) == -72.0){
+		                System.out.println(i+"===========>"+EPSGIDList[i]+"   "+"X::"+result.x+"   "+"Y::"+result.y);
+		                new WriteTxt().WriteTxt(EPSGIDList[i],String.valueOf(result.x),String.valueOf(result.y));
+	                }else{
+		                new WriteTxt().WriteTxt(EPSGIDList[i],"pass"," ");
+	                	System.out.println(i+"===========>"+EPSGIDList[i]+"   "+"pass");
+	                }
+	                
+    			}catch(Exception e) {
+	                new WriteTxt().WriteTxt(EPSGIDList[i],"Transform failed"," ");
+        			System.out.println("Transform failed: "+EPSGIDList[i]);
+        			//LOGGER.debug("Transform failed: " + e.getMessage());
+        		}	
+                
+    		} 		
+    		return null;
+    	
+
+    }
+}

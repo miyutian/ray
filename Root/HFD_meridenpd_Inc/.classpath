@@ -22,5 +22,6 @@
 	<classpathentry kind="lib" path="D:/GITProject/Root/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="D:/GITProject/Root/ezmorph-1.0.3.jar"/>
 	<classpathentry kind="lib" path="D:/GITProject/Root/mysql-connector-java-3.0.17-ga-bin.jar"/>
+	<classpathentry kind="lib" path="D:/GITProject/Root/proj4j-0.1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

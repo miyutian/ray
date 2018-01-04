@@ -2,6 +2,7 @@ package com;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.apache.http.ParseException;
 import org.osgeo.proj4j.BasicCoordinateTransform;
@@ -17,7 +18,7 @@ import org.osgeo.proj4j.ProjCoordinate;
  */
 public class CodeTest {
     public static void main(String[] args) throws ParseException, IOException{
-    	String[] coor= new CodeTest().transform(756835.31,985114.69);
+    	String[] coor= new CodeTest().transform(986856.19,755318.63);
     	
     	
     }
@@ -42,45 +43,40 @@ public class CodeTest {
     		    4) https://trac.osgeo.org/proj4j 
 
     		 */
-    		String[] EPSGIDList = new String[]{
-    				"EPSG:4481",
-    				"EPSG:4482",
-    				"EPSG:4483",
-    				"EPSG:4484",
-    				"EPSG:4486",
-    				"EPSG:4488"
-    		};
+    		//String[] EPSGIDList = new String[]{
+    		//		"EPSG:2234",
+    		//		"EPSG:2879",
+    		//		"EPSG:3508"
+    		//};
+    		String[] coor = new String[2];
     		try {
+    			
     			for (int i = 0; i < 4200; i++){
+    				
 	    			CRSFactory crsFactory = new CRSFactory();
-	    			CoordinateReferenceSystem sourceSRS = crsFactory.createFromName(EPSGIDList[i]);
+	    			CoordinateReferenceSystem sourceSRS = crsFactory.createFromName("EPSG:2879");
+	    			
 	    			CoordinateReferenceSystem targetSRS = crsFactory.createFromName("EPSG:4326");
 	    			CoordinateTransform transformation = new BasicCoordinateTransform(sourceSRS, targetSRS);
+
 	    			ProjCoordinate result = new ProjCoordinate();
 	    			ProjCoordinate input = new ProjCoordinate(y, x);
-	    			transformation.transform(input, result);
-	    			ProjCoordinate yy = transformation.transform(input, result);
-	    			
-	    			//System.out.println("result       "+yy);
-	    			if (result == null){
-	    				continue;
-	    			}
+	    			transformation.transform(input, result);	    			
+	    			ProjCoordinate yy = transformation.transform(input, result);	    			
+	    			//if (result == null){
+	    				//continue;
+	    			//}
 
-	                String[] coor = new String[2];
+	                
 	                coor[0] = result.y + "";
 	                coor[1] = result.x + "";
-	                if(Math.ceil(result.x/1) == -72.0){
-		                System.out.println(i+"===========>"+EPSGIDList[i]+"   "+"X::"+result.x+"   "+"Y::"+result.y);
-	                }else{
-	                	System.out.println(i+"===========>"+EPSGIDList[i]+"   "+"pass");
-	                }
-	                new WriteTxt().WriteTxt(coor[0],coor[1]);
-    			}
+	                
+    			}	
                 
     		} catch(Exception e) {
     			//LOGGER.debug("Transform failed: " + e.getMessage());
-    		}			
-    		return null;
+    		}		
+    		return coor;
     	
 
     }

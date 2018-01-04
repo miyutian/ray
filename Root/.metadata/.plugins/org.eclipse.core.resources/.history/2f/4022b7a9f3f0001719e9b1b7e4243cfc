@@ -1,0 +1,268 @@
+package com;
+
+
+import java.io.IOException;
+
+import org.apache.http.ParseException;
+import org.osgeo.proj4j.BasicCoordinateTransform;
+import org.osgeo.proj4j.CRSFactory;
+import org.osgeo.proj4j.CoordinateReferenceSystem;
+import org.osgeo.proj4j.CoordinateTransform;
+import org.osgeo.proj4j.ProjCoordinate;
+
+/**
+ * 使用Jsoup解析url
+ * @tag：url ：http://sex.guokr.com/
+ * Created by monster on 2015/12/11.
+ */
+public class CodeTest {
+    public static void main(String[] args) throws ParseException, IOException{
+    	String[] coor= new CodeTest().transform(756835.31,985114.69);
+    	
+    	
+    }
+    	/**
+    	 * @param y
+    	 * @param x
+    	 * @return
+    	 */
+    	/**
+    	 * @param y
+    	 * @param x
+    	 * @return
+    	 */
+    	private String[] transform(double y, double x) {
+    		 /* for more details please refer to: 
+    		    1) https://github.com/OSGeo/proj.4/wiki/GenParms#units 
+
+    		    2) https://gis.stackexchange.com/questions/206050/convert-from-epsg27700-to-latitude-and-longitude 
+
+    		    3) https://gis.stackexchange.com/questions/199087/projection-from-epsg4326-to-epsg4258 
+
+    		    4) https://trac.osgeo.org/proj4j 
+
+    		 */
+    		String[] EPSGIDList = new String[]{
+    				"EPSG:11717",
+    				"EPSG:11718",
+    				"EPSG:11719",
+    				"EPSG:11720",
+    				"EPSG:11721",
+    				"EPSG:11722",
+    				"EPSG:11723",
+    				"EPSG:11724",
+    				"EPSG:11725",
+    				"EPSG:11726",
+    				"EPSG:11727",
+    				"EPSG:11728",
+    				"EPSG:11729",
+    				"EPSG:11730",
+    				"EPSG:11731",
+    				"EPSG:11732",
+    				"EPSG:11733",
+    				"EPSG:11734",
+    				"EPSG:11735",
+    				"EPSG:11736",
+    				"EPSG:11737",
+    				"EPSG:11738",
+    				"EPSG:11739",
+    				"EPSG:11740",
+    				"EPSG:11741",
+    				"EPSG:11742",
+    				"EPSG:11743",
+    				"EPSG:11744",
+    				"EPSG:11745",
+    				"EPSG:11746",
+    				"EPSG:11747",
+    				"EPSG:11748",
+    				"EPSG:11749",
+    				"EPSG:11750",
+    				"EPSG:11751",
+    				"EPSG:11752",
+    				"EPSG:11753",
+    				"EPSG:11754",
+    				"EPSG:11755",
+    				"EPSG:11756",
+    				"EPSG:11757",
+    				"EPSG:11758",
+    				"EPSG:11759",
+    				"EPSG:11760",
+    				"EPSG:11761",
+    				"EPSG:11762",
+    				"EPSG:11763",
+    				"EPSG:11764",
+    				"EPSG:11765",
+    				"EPSG:11766",
+    				"EPSG:11767",
+    				"EPSG:11768",
+    				"EPSG:11769",
+    				"EPSG:11770",
+    				"EPSG:11771",
+    				"EPSG:11772",
+    				"EPSG:11773",
+    				"EPSG:11774",
+    				"EPSG:11775",
+    				"EPSG:11776",
+    				"EPSG:11777",
+    				"EPSG:11778",
+    				"EPSG:11779",
+    				"EPSG:11780",
+    				"EPSG:11781",
+    				"EPSG:11782",
+    				"EPSG:11783",
+    				"EPSG:11784",
+    				"EPSG:11785",
+    				"EPSG:11786",
+    				"EPSG:11787",
+    				"EPSG:11788",
+    				"EPSG:11789",
+    				"EPSG:11790",
+    				"EPSG:11791",
+    				"EPSG:11792",
+    				"EPSG:11793",
+    				"EPSG:11794",
+    				"EPSG:11795",
+    				"EPSG:11796",
+    				"EPSG:11797",
+    				"EPSG:11798",
+    				"EPSG:11799",
+    				"EPSG:11800",
+    				"EPSG:11801",
+    				"EPSG:11802",
+    				"EPSG:11803",
+    				"EPSG:11804",
+    				"EPSG:11805",
+    				"EPSG:11806",
+    				"EPSG:11807",
+    				"EPSG:11808",
+    				"EPSG:11809",
+    				"EPSG:11810",
+    				"EPSG:11811",
+    				"EPSG:11812",
+    				"EPSG:11813",
+    				"EPSG:11814",
+    				"EPSG:11815",
+    				"EPSG:11816",
+    				"EPSG:11817",
+    				"EPSG:11818",
+    				"EPSG:11819",
+    				"EPSG:11820",
+    				"EPSG:11821",
+    				"EPSG:11822",
+    				"EPSG:11823",
+    				"EPSG:11824",
+    				"EPSG:11825",
+    				"EPSG:11826",
+    				"EPSG:11827",
+    				"EPSG:11828",
+    				"EPSG:11829",
+    				"EPSG:11830",
+    				"EPSG:11831",
+    				"EPSG:11832",
+    				"EPSG:11833",
+    				"EPSG:11834",
+    				"EPSG:11835",
+    				"EPSG:11836",
+    				"EPSG:11837",
+    				"EPSG:11838",
+    				"EPSG:11839",
+    				"EPSG:11840",
+    				"EPSG:11841",
+    				"EPSG:11842",
+    				"EPSG:11843",
+    				"EPSG:11844",
+    				"EPSG:11845",
+    				"EPSG:11846",
+    				"EPSG:11847",
+    				"EPSG:11848",
+    				"EPSG:11849",
+    				"EPSG:11850",
+    				"EPSG:11851",
+    				"EPSG:11852",
+    				"EPSG:11853",
+    				"EPSG:11854",
+    				"EPSG:11855",
+    				"EPSG:11856",
+    				"EPSG:11857",
+    				"EPSG:11858",
+    				"EPSG:11859",
+    				"EPSG:11860",
+    				"EPSG:11861",
+    				"EPSG:11862",
+    				"EPSG:11863",
+    				"EPSG:11864",
+    				"EPSG:11865",
+    				"EPSG:11866",
+    				"EPSG:11867",
+    				"EPSG:11868",
+    				"EPSG:11869",
+    				"EPSG:11870",
+    				"EPSG:11871",
+    				"EPSG:11872",
+    				"EPSG:11873",
+    				"EPSG:11874",
+    				"EPSG:11875",
+    				"EPSG:11876",
+    				"EPSG:11877",
+    				"EPSG:11878",
+    				"EPSG:11879",
+    				"EPSG:11880",
+    				"EPSG:11881",
+    				"EPSG:11882",
+    				"EPSG:11883",
+    				"EPSG:11884",
+    				"EPSG:11885",
+    				"EPSG:11886",
+    				"EPSG:11887",
+    				"EPSG:11888",
+    				"EPSG:11889",
+    				"EPSG:11890",
+    				"EPSG:11891",
+    				"EPSG:11892",
+    				"EPSG:11893",
+    				"EPSG:11894",
+    				"EPSG:11895",
+    				"EPSG:11896",
+    				"EPSG:11897",
+    				"EPSG:11898"
+    		};
+    		
+    			for (int i = 0; i < 4200; i++){
+    				try {
+	    			CRSFactory crsFactory = new CRSFactory();
+	    			CoordinateReferenceSystem sourceSRS = crsFactory.createFromName(EPSGIDList[i]);
+	    			
+	    			CoordinateReferenceSystem targetSRS = crsFactory.createFromName("EPSG:4326");
+	    			CoordinateTransform transformation = new BasicCoordinateTransform(sourceSRS, targetSRS);
+
+	    			ProjCoordinate result = new ProjCoordinate();
+	    			ProjCoordinate input = new ProjCoordinate(y, x);
+	    			transformation.transform(input, result);	    			
+	    			ProjCoordinate yy = transformation.transform(input, result);	    			
+	    			//if (result == null){
+	    				//continue;
+	    			//}
+
+	                String[] coor = new String[2];
+	                coor[0] = result.y + "";
+	                coor[1] = result.x + "";
+	                if(Math.ceil(result.x/1) == -72.0){
+		                System.out.println(i+"===========>"+EPSGIDList[i]+"   "+"X::"+result.x+"   "+"Y::"+result.y);
+		                new WriteTxt().WriteTxt(EPSGIDList[i],String.valueOf(result.x),String.valueOf(result.y));
+	                }else{
+		                new WriteTxt().WriteTxt(EPSGIDList[i],"pass"," ");
+	                	System.out.println(i+"===========>"+EPSGIDList[i]+"   "+"pass");
+	                }
+	                
+    			}catch(Exception e) {
+	                new WriteTxt().WriteTxt(EPSGIDList[i],"Transform failed"," ");
+        			System.out.println("Transform failed: "+EPSGIDList[i]);
+        			//LOGGER.debug("Transform failed: " + e.getMessage());
+        		}	
+                
+    		} 		
+    		return null;
+    	
+
+    }
+}

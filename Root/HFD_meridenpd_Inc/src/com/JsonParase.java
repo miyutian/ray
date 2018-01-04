@@ -28,12 +28,12 @@ public class JsonParase {
 	int Type = 1;
 	
 	public ArrayList<String[]> InfoParase(String InfoString) throws Exception{
-		JsonParser parse =new JsonParser();  //创建json解析器
+		JsonParser parse =new JsonParser();  //鍒涘缓json瑙ｆ瀽鍣�
 		Pattern pattern = Pattern.compile("[0-9]*");
         ArrayList<String[]> InfoList = new ArrayList<String[]>();
         try {
-            JsonObject json=(JsonObject) parse.parse(InfoString);  //创建jsonObject对象
-            System.out.println("recordsCount:"+json.get("records").getAsInt());  //将json数据转为为int型的数据
+            JsonObject json=(JsonObject) parse.parse(InfoString);  //鍒涘缓jsonObject瀵硅薄
+            System.out.println("recordsCount:"+json.get("records").getAsInt());  //灏唈son鏁版嵁杞负涓篿nt鍨嬬殑鏁版嵁
              
             //JsonObject result=json.get("rows").getAsJsonObject();
             //JsonObject rows=result.get("id").getAsJsonObject();
@@ -41,14 +41,14 @@ public class JsonParase {
             
             JsonObject jsonObject = new JsonParser().parse(InfoString).getAsJsonObject();
             //JsonParser parser = new JsonParser();
-            //将JSON的String 转成一个JsonArray对象
+            //灏咼SON鐨凷tring 杞垚涓�涓狫sonArray瀵硅薄
             JsonArray jsonArray = jsonObject.getAsJsonArray("rows");
 
             Gson gson = new Gson();
             ArrayList<UserBean> userBeanList = new ArrayList<UserBean>();
-            //加强for循环遍历JsonArray
+            //鍔犲己for寰幆閬嶅巻JsonArray
             for (JsonElement user : jsonArray) {
-                //使用GSON，直接转成Bean对象
+                //浣跨敤GSON锛岀洿鎺ヨ浆鎴怋ean瀵硅薄
                 UserBean userBean = gson.fromJson(user, UserBean.class);
                 userBeanList.add(userBean);
                 String main_st = userBean.marker_details_xml;
@@ -58,35 +58,38 @@ public class JsonParase {
                 if(main_st.indexOf(" ")!=-1){
                     Matcher isNum = pattern.matcher(main_st.substring(0,main_st.indexOf(" ")));
                 
-                String InfoListString[] = new String[7];
+                String InfoListString[] = new String[9];
                 if (main_st.indexOf("/")!=-1){
                 	if(main_st.indexOf(",")!=-1){
 	                	InfoListString = new String[]{
 	                    		userBean.id,userBean.starttime,userBean.closetime,userBean.nature,
-	                    		main_st.substring(0,main_st.lastIndexOf("/")),main_st.substring(main_st.lastIndexOf("/")+1,main_st.indexOf(",")),main_st
+	                    		main_st.substring(0,main_st.lastIndexOf("/")),main_st.substring(main_st.lastIndexOf("/")+1,main_st.indexOf(",")),main_st,
+	                    		userBean.geox,userBean.geoy
 	                	};
                 	}else{
                 		InfoListString = new String[]{
 	                    		userBean.id,userBean.starttime,userBean.closetime,userBean.nature,
-	                    		main_st.substring(0,main_st.lastIndexOf("/")),main_st.substring(main_st.lastIndexOf("/")+1),main_st
+	                    		main_st.substring(0,main_st.lastIndexOf("/")),main_st.substring(main_st.lastIndexOf("/")+1),main_st,
+	                    		userBean.geox,userBean.geoy
                 		};
 	                	};
                 }else if (isNum.matches()){
                 	InfoListString = new String[]{
                     		userBean.id,userBean.starttime,userBean.closetime,userBean.nature,
-                    		main_st.substring(main_st.indexOf(" ")+1,main_st.indexOf(",")),"BLOCK "+main_st.substring(0,main_st.indexOf(" ")),main_st
+                    		main_st.substring(main_st.indexOf(" ")+1,main_st.indexOf(",")),"BLOCK "+main_st.substring(0,main_st.indexOf(" ")),main_st,
+                    		userBean.geox,userBean.geoy
                     };
                 }else if(main_st.indexOf(",")!=-1){
                 	InfoListString = new String[]{
                     		userBean.id,userBean.starttime,userBean.closetime,userBean.nature,
-                    		main_st.substring(0,main_st.indexOf(",")),null,main_st
+                    		main_st.substring(0,main_st.indexOf(",")),null,main_st,userBean.geox,userBean.geoy
                     };
                 	System.err.println("Find some recored have no cross from!!!");
                 }
                 else{
                 	InfoListString = new String[]{
                     		userBean.id,userBean.starttime,userBean.closetime,userBean.nature,
-                    		main_st,null,main_st
+                    		main_st,null,main_st,userBean.geox,userBean.geoy
                     };
                 }
                 InfoList.add(InfoListString);
@@ -99,7 +102,8 @@ public class JsonParase {
         }return InfoList;
 	
 	 }
-	public ArrayList<String[]> LatLonParase (String LatLonString){
+	// parse latlon infomation from anther URL, looks it's unnecessary!
+	/*public ArrayList<String[]> LatLonParase (String LatLonString){
 		
 		JSONObject Markers = JSONObject.fromObject(LatLonString);  
         //System.out.println("------1----->"+Markers.toString());  
@@ -135,17 +139,18 @@ public class JsonParase {
 				if (String.valueOf(LatLonList.get(LatLonListi)[2]).equals(String.valueOf(InfoList.get(InfoListi)[6]))){
 					HFDInfoStrings = new String[]{
 							InfoList.get(InfoListi)[0],InfoList.get(InfoListi)[1],InfoList.get(InfoListi)[2],InfoList.get(InfoListi)[3],
-							InfoList.get(InfoListi)[4],InfoList.get(InfoListi)[5],LatLonList.get(LatLonListi)[0],LatLonList.get(LatLonListi)[1]
+							InfoList.get(InfoListi)[4],InfoList.get(InfoListi)[5],LatLonList.get(LatLonListi)[0],LatLonList.get(LatLonListi)[1],
+							InfoList.get(InfoListi)[7],InfoList.get(InfoListi)[8]
 					};
 					HFDInfo.add(HFDInfoStrings);
 					break;
 				}
 			}
 		}return HFDInfo;
-	}
+	}*/
 	public void InsertDB(ArrayList<String[]> HFDInfo) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
 		Connection dbConn = new ConnectDB().connect();
-        String insertSQL = "insert into HFD_meridenpd_Inc_Info(ID,Start_time,end_time,description,main_st,cross_from,Slat,Slon) values(?,?,?,?,?,?,?,?)";
+        String insertSQL = "insert into hfd_meridenpd_inc_info_v2(IncidentID,Start_time,end_time,description,main_st,cross_from,Slat,Slon) values(?,?,?,?,?,?,?,?)";
         PreparedStatement pstm = dbConn.prepareStatement(insertSQL);
         int batchCount = 0;
 		for (int i = 0;i < HFDInfo.size();i++){
@@ -155,8 +160,11 @@ public class JsonParase {
 			pstm.setString(4, (String)(HFDInfo.get(i)[3]));
 			pstm.setString(5, (String)(HFDInfo.get(i)[4]));
 			pstm.setString(6, (String)(HFDInfo.get(i)[5]));
-			pstm.setString(7, (String)(HFDInfo.get(i)[6]));
-			pstm.setString(8, (String)(HFDInfo.get(i)[7]));
+			//pstm.setString(7, (String)(HFDInfo.get(i)[6]));
+			//pstm.setString(8, (String)(HFDInfo.get(i)[7]));
+			String[] coor = new CoorTransform().transform(Double.valueOf(HFDInfo.get(i)[7]),Double.valueOf(HFDInfo.get(i)[8]));
+			pstm.setString(7, coor[1]);
+			pstm.setString(8, coor[0]);
 			System.out.println(insertSQL);
     			pstm.addBatch();
     			batchCount++;
@@ -169,7 +177,7 @@ public class JsonParase {
 		}
 	}
 	public class UserBean {
-	    //变量名跟JSON数据的字段名需要一致
+	    //鍙橀噺鍚嶈窡JSON鏁版嵁鐨勫瓧娈靛悕闇�瑕佷竴鑷�
 	    private String starttime ;
 	    private String id;
 	    private String nature;
@@ -178,6 +186,8 @@ public class JsonParase {
 	    private String value;
 	    private String lat;
 	    private String lng;
+	    private String geox;
+	    private String geoy;
 	    
 	}
 }
