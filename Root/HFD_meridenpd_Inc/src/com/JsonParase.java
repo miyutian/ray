@@ -2,10 +2,16 @@ package com;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import com.mysql.jdbc.Driver;
+import com.sun.jna.platform.unix.X11.XClientMessageEvent.Data;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -32,9 +38,7 @@ public class JsonParase {
 		Pattern pattern = Pattern.compile("[0-9]*");
         ArrayList<String[]> InfoList = new ArrayList<String[]>();
         try {
-            JsonObject json=(JsonObject) parse.parse(InfoString);  //鍒涘缓jsonObject瀵硅薄
-            System.out.println("recordsCount:"+json.get("records").getAsInt());  //灏唈son鏁版嵁杞负涓篿nt鍨嬬殑鏁版嵁
-             
+            JsonObject json=(JsonObject) parse.parse(InfoString);  //鍒涘缓jsonObject瀵硅薄             
             //JsonObject result=json.get("rows").getAsJsonObject();
             //JsonObject rows=result.get("id").getAsJsonObject();
             //System.out.println("temperature:"+rows.get("id").getAsString());
@@ -151,29 +155,46 @@ public class JsonParase {
 	public void InsertDB(ArrayList<String[]> HFDInfo) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
 		Connection dbConn = new ConnectDB().connect();
         String insertSQL = "insert into hfd_meridenpd_inc_info_v2(IncidentID,Start_time,end_time,description,main_st,cross_from,Slat,Slon) values(?,?,?,?,?,?,?,?)";
+        String incidentIDSQL = "SELECT incidentID from hfd_meridenpd_inc_info_v2";
         PreparedStatement pstm = dbConn.prepareStatement(insertSQL);
+        PreparedStatement pstmIncidentID = dbConn.prepareStatement(incidentIDSQL);
+        ResultSet retsult = pstmIncidentID.executeQuery();
+        ArrayList<String> IdList = new ArrayList<String>();
+        while(retsult.next()){
+        	IdList.add(retsult.getString(1));
+        }
         int batchCount = 0;
 		for (int i = 0;i < HFDInfo.size();i++){
-			pstm.setInt(1, Integer.valueOf(HFDInfo.get(i)[0]));
-			pstm.setString(2, (String)(HFDInfo.get(i)[1]));
-			pstm.setString(3, (String)(HFDInfo.get(i)[2]));
-			pstm.setString(4, (String)(HFDInfo.get(i)[3]));
-			pstm.setString(5, (String)(HFDInfo.get(i)[4]));
-			pstm.setString(6, (String)(HFDInfo.get(i)[5]));
-			//pstm.setString(7, (String)(HFDInfo.get(i)[6]));
-			//pstm.setString(8, (String)(HFDInfo.get(i)[7]));
-			String[] coor = new CoorTransform().transform(Double.valueOf(HFDInfo.get(i)[7]),Double.valueOf(HFDInfo.get(i)[8]));
-			pstm.setString(7, coor[1]);
-			pstm.setString(8, coor[0]);
-			System.out.println(insertSQL);
-    			pstm.addBatch();
-    			batchCount++;
-    			if (batchCount == 4000) {
-    			    pstm.executeBatch();
-    			    pstm.clearBatch();
-    			    batchCount = 0;
-        	} pstm.executeBatch();
-        	System.out.println("save DB sucessfully!");
+			if(!IdList.contains(String.valueOf(HFDInfo.get(i)[0]))){
+				/*String endtime = "";
+				if((HFDInfo.get(i)[2]) == null){
+					endtime = ;
+					Date date = new Date();
+					DateFormat sdf = new SimpleDateFormat("MM/dd/YYYY HH:mm:ss");
+				}*/
+				pstm.setInt(1, Integer.valueOf(HFDInfo.get(i)[0]));
+				pstm.setString(2, (String)(HFDInfo.get(i)[1]));
+				pstm.setString(3, (String)(HFDInfo.get(i)[2]));
+				pstm.setString(4, (String)(HFDInfo.get(i)[3]));
+				pstm.setString(5, (String)(HFDInfo.get(i)[4]));
+				pstm.setString(6, (String)(HFDInfo.get(i)[5]));
+				//pstm.setString(7, (String)(HFDInfo.get(i)[6]));
+				//pstm.setString(8, (String)(HFDInfo.get(i)[7]));
+				String[] coor = new CoorTransform().transform(Double.valueOf(HFDInfo.get(i)[7]),Double.valueOf(HFDInfo.get(i)[8]));
+				pstm.setString(7, coor[1]);
+				pstm.setString(8, coor[0]);
+				//System.out.println(insertSQL);
+	    			pstm.addBatch();
+	    			batchCount++;
+	    			if (batchCount == 4000) {
+	    			    pstm.executeBatch();
+	    			    pstm.clearBatch();
+	    			    batchCount = 0;
+	    			} pstm.executeBatch();
+	        	System.out.println("save DB sucessfully!");
+			}else{
+				System.out.println("Duplicate records and unnecessary to save data!!!");
+			}
 		}
 	}
 	public class UserBean {

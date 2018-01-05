@@ -44,7 +44,6 @@ public class CoorTransform {
                coor[0] = result.y + "";
                coor[1] = result.x + "";
 				}	
-           System.out.println("X"+coor[1]+"Y"+coor[0]);
 			} catch(Exception e) {
 			//LOGGER.debug("Transform failed: " + e.getMessage());
 		}		
